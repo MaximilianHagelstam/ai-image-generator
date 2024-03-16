@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts'],
   googleFonts: {
     families: {
-      Inter: '100...900',
+      Inter: '100..900',
     },
   },
   app: {

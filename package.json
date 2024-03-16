@@ -12,7 +12,7 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "npx nuxi typecheck",
     "format": "prettier --write .",
-    "clean": "rm -rf .nuxt node_modules"
+    "clean": "rm -rf .nuxt .output node_modules"
   },
   "dependencies": {
     "nuxt": "^3.10.3",
