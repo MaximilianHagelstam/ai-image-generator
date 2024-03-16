@@ -1,10 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    '@nuxtjs/tailwindcss',
-    ['@nuxtjs/eslint-module', { configPath: './eslintrc.cjs' }],
-  ],
-  devtools: { enabled: false },
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts'],
+  googleFonts: {
+    families: {
+      Inter: '100...900',
+    },
+  },
   app: {
     head: {
       charset: 'utf-8',
@@ -17,4 +18,5 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
+  devtools: { enabled: false },
 });

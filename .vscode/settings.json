@@ -1,5 +1,4 @@
 {
-  "tailwindCSS.experimental.configFile": ".nuxt/tailwind.config/viewer-config.cjs",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
