@@ -17,7 +17,7 @@
               class="rounded-lg bg-gray-800 px-4 py-2.5 text-center text-white duration-150 hover:bg-gray-600 active:bg-gray-900"
               to="/generate"
             >
-              Generate your QR Code
+              Generate an image
             </NuxtLink>
             <a
               class="rounded-lg border px-4 py-2.5 text-center text-gray-700 duration-150 hover:bg-gray-50"
