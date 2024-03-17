@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+const exampleResult =
+  'https://pbxt.replicate.delivery/YXbcLudoHBIYHV6L0HbcTx5iRzLFMwygLr3vhGpZI35caXbE/out-0.png';
+
 export default defineEventHandler(async (event) => {
   const body = (await readBody(event)) as { prompt: string | undefined };
 
@@ -19,7 +22,7 @@ export default defineEventHandler(async (event) => {
 
   if (process.env.NODE_ENV !== 'production') {
     return {
-      url: 'https://pbxt.replicate.delivery/YXbcLudoHBIYHV6L0HbcTx5iRzLFMwygLr3vhGpZI35caXbE/out-0.png',
+      url: exampleResult,
     };
   }
 
