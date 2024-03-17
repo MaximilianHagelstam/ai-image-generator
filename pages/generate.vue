@@ -17,6 +17,10 @@
                 <input
                   id="prompt"
                   name="prompt"
+                  type="text"
+                  minlength="10"
+                  maxlength="160"
+                  required
                   class="flex h-10 w-full rounded-md border px-3 py-2 text-sm"
                   placeholder="An astronaut riding a horse on mars, hd, dramatic lighting"
                 />
@@ -27,21 +31,25 @@
                   class="grid grid-cols-1 gap-3 text-center text-sm text-gray-500 sm:grid-cols-2"
                 >
                   <button
+                    type="button"
                     class="cursor-pointer rounded-2xl border p-2 transition hover:bg-gray-100"
                   >
                     A city view with clouds
                   </button>
                   <button
+                    type="button"
                     class="cursor-pointer rounded-2xl border p-2 transition hover:bg-gray-100"
                   >
                     A beautiful glacier
                   </button>
                   <button
+                    type="button"
                     class="cursor-pointer rounded-2xl border p-2 transition hover:bg-gray-100"
                   >
                     A forest overlooking a mountain
                   </button>
                   <button
+                    type="button"
                     class="cursor-pointer rounded-2xl border p-2 transition hover:bg-gray-100"
                   >
                     A saharan desert
@@ -52,7 +60,7 @@
                 class="rounded-lg bg-gray-800 px-4 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-gray-600 active:bg-gray-900"
                 type="submit"
               >
-                Generate
+                ✨ Generate
               </button>
             </div>
           </form>

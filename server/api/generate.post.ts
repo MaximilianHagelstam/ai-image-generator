@@ -24,8 +24,8 @@ export default defineEventHandler(async (event) => {
       version:
         '39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b',
       input: {
-        width: 768,
-        height: 768,
+        width: 500,
+        height: 500,
         prompt: body.prompt,
         refine: 'expert_ensemble_refiner',
         scheduler: 'K_EULER',
