@@ -11,12 +11,12 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "npx nuxi typecheck",
-    "format": "prettier --write .",
+    "format": "prettier --write . \"!pnpm-lock.yaml\"",
     "clean": "rm -rf .nuxt .output node_modules"
   },
   "dependencies": {
     "axios": "^1.6.8",
-    "nuxt": "^3.10.3",
+    "nuxt": "^3.11.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
@@ -27,6 +27,7 @@
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
+    "nuxt-security": "^1.2.2",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.12",
     "tailwindcss": "^3.4.1",
