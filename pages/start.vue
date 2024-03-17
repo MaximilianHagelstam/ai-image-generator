@@ -10,17 +10,13 @@ const promptSuggestions = [
 ];
 
 const generateImage = async () => {
-  try {
-    const data = (await $fetch('/api/generate', {
-      method: 'POST',
-      body: {
-        prompt: prompt.value.trim(),
-      },
-    })) as { url: string };
-    result.value = data.url;
-  } catch (error) {
-    console.log(error);
-  }
+  const data = (await $fetch('/api/generate', {
+    method: 'POST',
+    body: {
+      prompt: prompt.value.trim(),
+    },
+  })) as { url: string };
+  result.value = data.url;
 };
 </script>
 
@@ -72,12 +68,17 @@ const generateImage = async () => {
             >
               ✨ Generate
             </button>
-            <div v-if="result.length !== 0">
-              <p>Response: {{ result }}</p>
-            </div>
           </div>
         </div>
-        <div class="col-span-1"></div>
+        <div v-if="result.length !== 0" class="col-span-1">
+          <NuxtImg
+            alt="generation result"
+            width="500"
+            height="500"
+            class="rounded-lg"
+            :src="result"
+          />
+        </div>
       </div>
     </div>
   </main>

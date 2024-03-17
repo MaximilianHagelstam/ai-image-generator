@@ -1,27 +1,27 @@
 <script setup lang="ts">
 const exampleImages = [
   {
-    src: '/examples/example1.png',
+    src: '/images/example1.png',
     alt: 'astronaut',
   },
   {
-    src: '/examples/example2.png',
+    src: '/images/example2.png',
     alt: 'tram',
   },
   {
-    src: '/examples/example3.png',
+    src: '/images/example3.png',
     alt: 'car',
   },
   {
-    src: '/examples/example4.png',
+    src: '/images/example4.png',
     alt: 'woman',
   },
   {
-    src: '/examples/example5.png',
+    src: '/images/example5.png',
     alt: 'landscape',
   },
   {
-    src: '/examples/example6.png',
+    src: '/images/example6.png',
     alt: 'cat',
   },
 ];
@@ -44,7 +44,7 @@ const exampleImages = [
           >
             <NuxtLink
               class="rounded-lg bg-gray-800 px-4 py-2.5 text-center text-white duration-150 hover:bg-gray-600 active:bg-gray-900"
-              to="/generate"
+              to="/start"
             >
               Generate an image
             </NuxtLink>
@@ -57,7 +57,7 @@ const exampleImages = [
             </a>
           </div>
           <div class="grid grid-cols-2 gap-4 pt-10 sm:grid-cols-3">
-            <img
+            <NuxtImg
               v-for="exampleImage in exampleImages"
               :key="exampleImage.alt"
               :alt="exampleImage.alt"
@@ -65,6 +65,8 @@ const exampleImages = [
               height="500"
               class="rounded-lg"
               :src="exampleImage.src"
+              loading="lazy"
+              format="webp"
             />
           </div>
         </div>

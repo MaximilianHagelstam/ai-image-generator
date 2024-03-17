@@ -15,6 +15,7 @@
     "clean": "rm -rf .nuxt .output node_modules"
   },
   "dependencies": {
+    "@nuxt/image": "^1.4.0",
     "axios": "^1.6.8",
     "nuxt": "^3.11.0",
     "vue": "^3.4.21",
