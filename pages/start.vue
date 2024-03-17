@@ -10,12 +10,12 @@ const promptSuggestions = [
 ];
 
 const generateImage = async () => {
-  const data = (await $fetch('/api/generate', {
+  const data = await $fetch('/api/generate', {
     method: 'POST',
     body: {
       prompt: prompt.value.trim(),
     },
-  })) as { url: string };
+  });
   result.value = data.url;
 };
 </script>
