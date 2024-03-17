@@ -1,3 +1,32 @@
+<script setup lang="ts">
+const exampleImages = [
+  {
+    src: '/examples/example1.png',
+    alt: 'astronaut',
+  },
+  {
+    src: '/examples/example2.png',
+    alt: 'tram',
+  },
+  {
+    src: '/examples/example3.png',
+    alt: 'car',
+  },
+  {
+    src: '/examples/example4.png',
+    alt: 'woman',
+  },
+  {
+    src: '/examples/example5.png',
+    alt: 'landscape',
+  },
+  {
+    src: '/examples/example6.png',
+    alt: 'cat',
+  },
+];
+</script>
+
 <template>
   <main>
     <section>
@@ -29,46 +58,13 @@
           </div>
           <div class="grid grid-cols-2 gap-4 pt-10 sm:grid-cols-3">
             <img
-              alt="image"
+              v-for="exampleImage in exampleImages"
+              :key="exampleImage.alt"
+              :alt="exampleImage.alt"
               width="500"
               height="500"
               class="rounded-lg"
-              src="/sample.png"
-            />
-            <img
-              alt="image"
-              width="500"
-              height="500"
-              class="rounded-lg"
-              src="/sample.png"
-            />
-            <img
-              alt="image"
-              width="500"
-              height="500"
-              class="rounded-lg"
-              src="/sample.png"
-            />
-            <img
-              alt="image"
-              width="500"
-              height="500"
-              class="rounded-lg"
-              src="/sample.png"
-            />
-            <img
-              alt="image"
-              width="500"
-              height="500"
-              class="rounded-lg"
-              src="/sample.png"
-            />
-            <img
-              alt="image"
-              width="500"
-              height="500"
-              class="rounded-lg"
-              src="/sample.png"
+              :src="exampleImage.src"
             />
           </div>
         </div>

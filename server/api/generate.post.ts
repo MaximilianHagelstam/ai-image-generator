@@ -10,6 +10,13 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  if (body.prompt.length < 10 || body.prompt.length > 160) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Prompt must be between 10 and 160 characters',
+    });
+  }
+
   if (process.env.NODE_ENV !== 'production') {
     return {
       url: 'https://pbxt.replicate.delivery/YXbcLudoHBIYHV6L0HbcTx5iRzLFMwygLr3vhGpZI35caXbE/out-0.png',
