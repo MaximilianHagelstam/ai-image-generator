@@ -7,7 +7,7 @@
           <span class="text-lg font-bold">Stxl AI</span>
         </NuxtLink>
         <NuxtLink
-          class="rounded-lg bg-gray-800 px-4 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-gray-600 active:bg-gray-900"
+          class="rounded-lg bg-gray-800 px-4 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-gray-700 active:bg-gray-900"
           to="/start"
         >
           Generate an image

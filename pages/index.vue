@@ -43,7 +43,7 @@ const exampleImages = [
             class="flex items-center justify-center gap-x-3 text-sm font-medium"
           >
             <NuxtLink
-              class="rounded-lg bg-gray-800 px-4 py-2.5 text-center text-white duration-150 hover:bg-gray-600 active:bg-gray-900"
+              class="rounded-lg bg-gray-800 px-4 py-2.5 text-center text-white duration-150 hover:bg-gray-700"
               to="/start"
             >
               Generate an image
@@ -97,7 +97,7 @@ const exampleImages = [
           </p>
           <a
             href="https://github.com/MaximilianHagelstam/ai-image-generator"
-            class="mt-4 inline-flex max-w-[200px] items-center justify-center gap-2 rounded-lg bg-gray-800 px-4 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-gray-600 active:bg-gray-900"
+            class="mt-4 inline-flex max-w-[200px] items-center justify-center gap-2 rounded-lg bg-gray-800 px-4 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-gray-700"
             target="_blank"
           >
             <svg

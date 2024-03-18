@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const prompt = ref('');
 const result = ref('');
+const latencySeconds = ref(0);
+const isLoading = ref(false);
 
 const promptSuggestions = [
   'A city view with clouds',
@@ -10,6 +12,9 @@ const promptSuggestions = [
 ];
 
 const generateImage = async () => {
+  isLoading.value = true;
+  const start = Date.now();
+
   const data = await $fetch('/api/generate', {
     method: 'POST',
     body: {
@@ -17,6 +22,10 @@ const generateImage = async () => {
     },
   });
   result.value = data.url;
+
+  const end = Date.now();
+  latencySeconds.value = (end - start) / 1_000;
+  isLoading.value = false;
 };
 </script>
 
@@ -63,21 +72,39 @@ const generateImage = async () => {
               </div>
             </div>
             <button
-              class="rounded-lg bg-gray-800 px-4 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-gray-600 active:bg-gray-900"
+              class="rounded-lg bg-gray-800 px-4 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-700"
+              :disabled="isLoading"
               @click="generateImage"
             >
-              ✨ Generate
+              ✨{{ isLoading ? '. . .' : 'Generate' }}
             </button>
           </div>
         </div>
-        <div v-if="result.length !== 0" class="col-span-1">
-          <NuxtImg
-            alt="generation result"
-            width="500"
-            height="500"
-            class="rounded-lg"
-            :src="result"
+        <div class="col-span-1">
+          <div
+            v-if="isLoading === true"
+            class="h-[500px] w-[500px] animate-pulse rounded-lg bg-gray-200"
           />
+          <div
+            v-if="result.length !== 0 && !isLoading"
+            class="relative flex h-auto flex-col items-center justify-center"
+          >
+            <div
+              class="group relative mx-auto flex max-w-full flex-col items-center justify-center gap-y-2 rounded-lg border border-gray-300 p-2 shadow"
+            >
+              <NuxtImg
+                alt="generation result"
+                width="500"
+                height="500"
+                class="rounded-lg"
+                :src="result"
+                format="webp"
+              />
+              <p class="text-sm italic text-gray-400">
+                {{ `Image took ${latencySeconds} seconds to generate.` }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
