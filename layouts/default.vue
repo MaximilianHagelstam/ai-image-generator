@@ -14,9 +14,7 @@ useSeoMeta({
     class="mx-auto h-screen max-w-screen-xl bg-white px-4 font-sans text-gray-900 md:px-8"
   >
     <AppHeader />
-    <main>
-      <slot />
-    </main>
+    <slot />
     <AppFooter />
   </div>
 </template>
