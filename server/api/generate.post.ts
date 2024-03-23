@@ -81,5 +81,16 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  return { url: getData.results[0].output[0] };
+  const result = getData.results.find(
+    (result) => result?.output && result.output[0].length !== 0,
+  );
+
+  if (!result) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'There was an error generating the image',
+    });
+  }
+
+  return { url: result.output[0] };
 });
