@@ -21,6 +21,7 @@ export default defineEventHandler(async (event) => {
   }
 
   if (process.env.NODE_ENV !== 'production') {
+    await new Promise((resolve) => setTimeout(resolve, 2_000));
     return {
       url: exampleResult,
     };
@@ -34,8 +35,8 @@ export default defineEventHandler(async (event) => {
       version:
         '39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b',
       input: {
-        width: 500,
-        height: 500,
+        width: 768,
+        height: 768,
         prompt: body.prompt,
         refine: 'expert_ensemble_refiner',
         scheduler: 'K_EULER',

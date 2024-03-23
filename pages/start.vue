@@ -39,7 +39,11 @@ const generateImage = async () => {
       >
         <div class="col-span-1">
           <h1 class="mb-10 text-3xl font-bold">Generate an image</h1>
-          <div class="flex flex-col gap-4">
+          <form
+            class="flex flex-col gap-4"
+            method="post"
+            @submit.prevent="generateImage"
+          >
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="prompt">
                 Prompt
@@ -65,6 +69,7 @@ const generateImage = async () => {
                   v-for="promptSuggestion in promptSuggestions"
                   :key="promptSuggestion"
                   class="cursor-pointer rounded-2xl border p-2 transition hover:bg-gray-100"
+                  type="button"
                   @click="prompt = promptSuggestion"
                 >
                   {{ promptSuggestion }}
@@ -74,15 +79,14 @@ const generateImage = async () => {
             <button
               class="rounded-lg bg-gray-800 px-4 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-700"
               :disabled="isLoading"
-              @click="generateImage"
             >
               ✨{{ isLoading ? '. . .' : 'Generate' }}
             </button>
-          </div>
+          </form>
         </div>
         <div class="col-span-1">
           <div
-            v-if="isLoading === true"
+            v-if="isLoading"
             class="h-[500px] w-[500px] animate-pulse rounded-lg bg-gray-200"
           />
           <div
