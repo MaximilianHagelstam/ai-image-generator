@@ -3,6 +3,7 @@ const prompt = ref('');
 const result = ref('');
 const latencySeconds = ref(0);
 const isLoading = ref(false);
+const isError = ref(false);
 
 const promptSuggestions = [
   'A city view with clouds',
@@ -15,13 +16,17 @@ const generateImage = async () => {
   isLoading.value = true;
   const start = Date.now();
 
-  const data = await $fetch('/api/generate', {
-    method: 'POST',
-    body: {
-      prompt: prompt.value.trim(),
-    },
-  });
-  result.value = data.url;
+  try {
+    const data = await $fetch('/api/generate', {
+      method: 'POST',
+      body: {
+        prompt: prompt.value.trim(),
+      },
+    });
+    result.value = data.url;
+  } catch (error) {
+    isError.value = true;
+  }
 
   const end = Date.now();
   latencySeconds.value = (end - start) / 1_000;
@@ -83,6 +88,12 @@ const generateImage = async () => {
               ✨{{ isLoading ? '. . .' : 'Generate' }}
             </button>
           </form>
+          <p
+            v-if="isError && !isLoading"
+            class="mt-4 text-sm font-medium leading-none text-red-600"
+          >
+            There was an error generating the image
+          </p>
         </div>
         <div class="col-span-1">
           <div
@@ -90,7 +101,7 @@ const generateImage = async () => {
             class="h-[500px] w-[500px] animate-pulse rounded-lg bg-gray-200"
           />
           <div
-            v-if="result.length !== 0 && !isLoading"
+            v-if="result.length !== 0 && !isLoading && !isError"
             class="relative flex h-auto flex-col items-center justify-center"
           >
             <div
