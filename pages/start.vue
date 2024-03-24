@@ -85,7 +85,7 @@ const generateImage = async () => {
               class="rounded-lg bg-gray-800 px-4 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-700"
               :disabled="isLoading"
             >
-              ✨{{ isLoading ? '. . .' : 'Generate' }}
+              ✨ {{ isLoading ? '. . .' : 'Generate' }}
             </button>
           </form>
           <p

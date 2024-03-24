@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const { data: postData, status: postStatus } = await axios.post<{
-    id: string;
+    urls: { get: string };
   }>(
     'https://api.replicate.com/v1/predictions',
     {
@@ -65,32 +65,32 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const { data: getData, status: getStatus } = await axios.get<{
-    results: [{ output: string[] }];
-  }>(`https://api.replicate.com/v1/predictions?id=${postData.id}`, {
-    headers: {
-      Authorization: `Token ${process.env.REPLICATE_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (getStatus !== 200) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: 'Error retrieving image',
+  let imageUrl = '';
+  while (imageUrl.length === 0) {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const { data: getData, status: getStatus } = await axios.get<{
+      status: 'succeeded' | 'failed' | 'processing';
+      output: string[];
+    }>(postData.urls.get, {
+      headers: {
+        Authorization: `Token ${process.env.REPLICATE_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
     });
+
+    if (getStatus !== 200 || getData.status === 'failed') {
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'Error retrieving image',
+      });
+    }
+
+    if (getData.status === 'succeeded') {
+      console.log(JSON.stringify(getData, null, 2));
+      imageUrl = getData.output[getData.output.length - 1];
+      break;
+    }
   }
 
-  const result = getData.results.find(
-    (result) => result?.output && result.output[0].length !== 0,
-  );
-
-  if (!result) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: 'There was an error generating the image',
-    });
-  }
-
-  return { url: result.output[0] };
+  return { url: imageUrl };
 });
