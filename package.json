@@ -15,6 +15,7 @@
     "clean": "rm -rf .nuxt .output node_modules"
   },
   "dependencies": {
+    "@azure/storage-blob": "^12.17.0",
     "@nuxt/image": "^1.4.0",
     "axios": "^1.6.8",
     "nuxt": "^3.11.1",
