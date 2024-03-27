@@ -1,7 +1,11 @@
 import axios from 'axios';
+import { uploadImage } from '~/utils/azure';
+import { MaxPromptLength, MinPromptLength } from '~/utils/constants';
 
 const exampleResult =
   'https://pbxt.replicate.delivery/YXbcLudoHBIYHV6L0HbcTx5iRzLFMwygLr3vhGpZI35caXbE/out-0.png';
+const replicateApiVersion =
+  '39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b';
 
 export default defineEventHandler(async (event) => {
   const body = (await readBody(event)) as { prompt: string | undefined };
@@ -9,14 +13,17 @@ export default defineEventHandler(async (event) => {
   if (!body?.prompt || typeof body?.prompt !== 'string') {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Request body must contain prompt',
+      statusMessage: 'Prompt is required',
     });
   }
 
-  if (body.prompt.length < 10 || body.prompt.length > 160) {
+  if (
+    body.prompt.length < MinPromptLength ||
+    body.prompt.length > MaxPromptLength
+  ) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Prompt must be between 10 and 160 characters',
+      statusMessage: `Prompt must be between ${MinPromptLength} and ${MaxPromptLength} characters`,
     });
   }
 
@@ -32,8 +39,7 @@ export default defineEventHandler(async (event) => {
   }>(
     'https://api.replicate.com/v1/predictions',
     {
-      version:
-        '39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b',
+      version: replicateApiVersion,
       input: {
         width: 768,
         height: 768,
@@ -86,11 +92,18 @@ export default defineEventHandler(async (event) => {
     }
 
     if (getData.status === 'succeeded') {
-      console.log(JSON.stringify(getData, null, 2));
       imageUrl = getData.output[getData.output.length - 1];
       break;
     }
   }
 
-  return { url: imageUrl };
+  const url = await uploadImage(imageUrl);
+  if (!url) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Error uploading image',
+    });
+  }
+
+  return { url };
 });

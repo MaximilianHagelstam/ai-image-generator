@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { MaxPromptLength, MinPromptLength } from '~/utils/constants';
+
 const prompt = ref('');
 const result = ref('');
 const latencySeconds = ref(0);
@@ -58,8 +60,8 @@ const generateImage = async () => {
                 v-model="prompt"
                 name="prompt"
                 type="text"
-                minlength="10"
-                maxlength="160"
+                :minlength="MinPromptLength"
+                :maxlength="MaxPromptLength"
                 required
                 class="flex h-10 w-full rounded-md border px-3 py-2 text-sm"
                 placeholder="An astronaut riding a horse on mars, hd, dramatic lighting"
