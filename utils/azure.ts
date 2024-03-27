@@ -21,7 +21,11 @@ export const uploadImage = async (imageUrl: string): Promise<string | null> => {
     const blobName = `image_${id}.png`;
     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
-    await blockBlobClient.uploadData(file);
+    await blockBlobClient.uploadData(file, {
+      blobHTTPHeaders: {
+        blobContentType: 'image/png',
+      },
+    });
 
     return blockBlobClient.url;
   } catch (error) {
