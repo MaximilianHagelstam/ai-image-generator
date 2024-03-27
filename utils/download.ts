@@ -8,13 +8,7 @@ const forceDownload = (blobUrl: string, filename: string) => {
 };
 
 export const downloadImage = async (url: string, filename: string) => {
-  const res = await fetch(url, {
-    headers: new Headers({
-      Origin: location.origin,
-    }),
-    mode: 'cors',
-  });
-
+  const res = await fetch(url);
   const blob = await res.blob();
   const blobUrl = window.URL.createObjectURL(blob);
   forceDownload(blobUrl, filename);
