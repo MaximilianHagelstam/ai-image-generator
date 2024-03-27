@@ -37,6 +37,13 @@ const generateImage = async () => {
 
 const copyToClipboard = (text: string) => {
   navigator.clipboard.writeText(text);
+  useNuxtApp().$toast.info('✅ Link copied to clipboard', {
+    autoClose: 2000,
+    icon: false,
+    hideProgressBar: true,
+    position: 'bottom-right',
+    dangerouslyHTMLString: true,
+  });
 };
 </script>
 
