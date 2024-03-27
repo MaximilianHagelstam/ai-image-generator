@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { uploadImage } from '~/utils/azure';
 import { MaxPromptLength, MinPromptLength } from '~/utils/constants';
+import { uploadImage } from '~/utils/upload';
 
 const exampleResult =
   'https://pbxt.replicate.delivery/YXbcLudoHBIYHV6L0HbcTx5iRzLFMwygLr3vhGpZI35caXbE/out-0.png';

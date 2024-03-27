@@ -12,10 +12,10 @@ const handleError = () => {
       <div class="pt-28 text-gray-600">
         <div class="mx-auto max-w-4xl space-y-5 text-center">
           <h1 class="mx-auto text-4xl font-extrabold text-gray-800 sm:text-6xl">
-            {{ error.statusCode }}
+            {{ error?.statusCode }}
           </h1>
           <p class="mx-auto max-w-xl">
-            <span v-if="error.statusCode === 404">
+            <span v-if="error?.statusCode === 404">
               Sorry, that page doesn't exist.
             </span>
             <span v-else>Oops. It looks like something broke.</span>

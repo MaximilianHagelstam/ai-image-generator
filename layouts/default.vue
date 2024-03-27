@@ -1,11 +1,9 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'AI Image Generator',
-  ogTitle: 'AI Image Generator',
+  title: 'Stxl AI',
+  ogTitle: 'Stxl AI',
   description: 'Generate images using AI.',
   ogDescription: 'Generate images using AI.',
-  // ogImage: 'https://example.com/image.png',
-  // twitterCard: 'summary_large_image',
 });
 </script>
 

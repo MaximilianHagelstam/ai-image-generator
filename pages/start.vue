@@ -34,6 +34,10 @@ const generateImage = async () => {
   latencySeconds.value = (end - start) / 1_000;
   isLoading.value = false;
 };
+
+const copyToClipboard = (text: string) => {
+  navigator.clipboard.writeText(text);
+};
 </script>
 
 <template>
@@ -120,6 +124,20 @@ const generateImage = async () => {
               <p class="text-sm italic text-gray-400">
                 {{ `Image took ${latencySeconds} seconds to generate.` }}
               </p>
+            </div>
+            <div class="mt-4 flex justify-center gap-5">
+              <button
+                class="rounded-lg bg-gray-800 px-4 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-700"
+                @click="downloadImage(result, 'stxl-ai-image.png')"
+              >
+                Download
+              </button>
+              <button
+                class="rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-center text-sm font-medium hover:bg-gray-100"
+                @click="copyToClipboard(result)"
+              >
+                ✂️ Share
+              </button>
             </div>
           </div>
         </div>
