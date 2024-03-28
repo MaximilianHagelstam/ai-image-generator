@@ -9,4 +9,8 @@ describe('example', async () => {
   it('Renders Stxl AI', async () => {
     expect(await $fetch('/')).toContain('Stxl AI');
   });
+
+  it('Renders Stxl AI', async () => {
+    expect(await $fetch('/')).toContain('Stxl AI');
+  });
 });
