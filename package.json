@@ -9,11 +9,12 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "test": "vitest --run",
+    "test:coverage": "vitest --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "npx nuxi typecheck",
     "format": "prettier --write . \"!pnpm-lock.yaml\"",
-    "clean": "rm -rf .nuxt .output node_modules"
+    "clean": "rm -rf .nuxt .output node_modules coverage"
   },
   "dependencies": {
     "@azure/storage-blob": "^12.17.0",
@@ -30,6 +31,7 @@
     "@nuxt/test-utils": "^3.12.0",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
+    "@vitest/coverage-v8": "^1.4.0",
     "@vue/test-utils": "^2.4.5",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
