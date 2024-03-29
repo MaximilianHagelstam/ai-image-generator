@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { ExampleImage, IsProd } from '~/utils/constants';
+import { ExampleImage } from '~/utils/constants';
 
 const replicateApiVersion =
   '39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b';
 
 export const generateImage = async (prompt: string): Promise<string | null> => {
-  if (!IsProd) return ExampleImage;
+  if (process.env.TEST) return ExampleImage;
 
   try {
     const { data: postData, status: postStatus } = await axios.post<{

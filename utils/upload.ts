@@ -4,11 +4,10 @@ import {
   AzureConnectionString,
   AzureContainerName,
   ExampleImage,
-  IsProd,
 } from '~/utils/constants';
 
 export const uploadImage = async (imageUrl: string): Promise<string | null> => {
-  if (!IsProd) return ExampleImage;
+  if (process.env.TEST) return ExampleImage;
 
   const blobServiceClient = BlobServiceClient.fromConnectionString(
     AzureConnectionString,

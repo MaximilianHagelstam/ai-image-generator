@@ -6,5 +6,3 @@ export const AzureContainerName = process.env.AZURE_CONTAINER_NAME || '';
 
 export const ExampleImage =
   'https://pbxt.replicate.delivery/YXbcLudoHBIYHV6L0HbcTx5iRzLFMwygLr3vhGpZI35caXbE/out-0.png';
-
-export const IsProd = process.env.NODE_ENV === 'production';
