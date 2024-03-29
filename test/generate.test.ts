@@ -15,28 +15,62 @@ describe('/api/generate', async () => {
   });
 
   it('return status 404 with GET request', async () => {
-    const { status } = await fetch('/api/generate');
-    expect(status).toBe(404);
+    const res = await fetch('/api/generate');
+    expect(res.status).toBe(404);
   });
 
   it('return status 400 when prompt is missing', async () => {
-    const { status } = await fetch('/api/generate', { method: 'POST' });
-    expect(status).toBe(400);
-  });
-
-  it('return status 400 when prompt is too short', async () => {
-    const { status } = await fetch('/api/generate', {
+    const res = await fetch('/api/generate', {
       method: 'POST',
-      body: JSON.stringify({ prompt: 'test' }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
-    expect(status).toBe(400);
+    const json = (await res.json()) as { message: string };
+
+    expect(res.status).toBe(400);
+    expect(json.message).toBe('Prompt is required');
   });
 
   it('return status 400 when prompt is a number', async () => {
-    const { status } = await fetch('/api/generate', {
+    const res = await fetch('/api/generate', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({ prompt: 1 }),
     });
-    expect(status).toBe(400);
+    const json = (await res.json()) as { message: string };
+
+    expect(res.status).toBe(400);
+    expect(json.message).toBe('Prompt is required');
+  });
+
+  it('return status 400 when prompt is too short', async () => {
+    const res = await fetch('/api/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt: 'test' }),
+    });
+    const json = (await res.json()) as { message: string };
+
+    expect(res.status).toBe(400);
+    expect(json.message).toContain('Prompt must be');
+  });
+
+  it('return url when request is valid', async () => {
+    const res = await fetch('/api/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt: 'testing testing' }),
+    });
+    const json = (await res.json()) as { url: string };
+
+    expect(res.status).toBe(200);
+    expect(typeof json.url).toBe('string');
   });
 });
