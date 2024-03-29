@@ -7,14 +7,13 @@ import {
   IsProd,
 } from '~/utils/constants';
 
-const blobServiceClient = BlobServiceClient.fromConnectionString(
-  AzureConnectionString,
-);
-const containerClient =
-  blobServiceClient.getContainerClient(AzureContainerName);
-
 export const uploadImage = async (imageUrl: string): Promise<string | null> => {
   if (IsProd) return ExampleImage;
+  const blobServiceClient = BlobServiceClient.fromConnectionString(
+    AzureConnectionString,
+  );
+  const containerClient =
+    blobServiceClient.getContainerClient(AzureContainerName);
 
   try {
     const id = customAlphabet(

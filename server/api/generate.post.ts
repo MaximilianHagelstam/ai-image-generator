@@ -1,3 +1,4 @@
+import { defineEventHandler } from 'h3';
 import { MaxPromptLength, MinPromptLength } from '~/utils/constants';
 import { generateImage } from '~/utils/generate';
 import { uploadImage } from '~/utils/upload';
