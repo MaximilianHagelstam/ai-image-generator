@@ -2,9 +2,6 @@ import { MaxPromptLength, MinPromptLength } from '~/utils/constants';
 import { generateImage } from '~/utils/generate';
 import { uploadImage } from '~/utils/upload';
 
-const exampleResult =
-  'https://pbxt.replicate.delivery/YXbcLudoHBIYHV6L0HbcTx5iRzLFMwygLr3vhGpZI35caXbE/out-0.png';
-
 type RequestBody = { prompt: string };
 
 const validateBody = (
@@ -36,13 +33,6 @@ export default defineEventHandler(async (event) => {
       statusCode: 400,
       statusMessage: message,
     });
-  }
-
-  if (process.env.NODE_ENV !== 'production') {
-    await new Promise((resolve) => setTimeout(resolve, 2_000));
-    return {
-      url: exampleResult,
-    };
   }
 
   const imageUrl = await generateImage(body.prompt);

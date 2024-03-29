@@ -1,14 +1,21 @@
 import { BlobServiceClient } from '@azure/storage-blob';
 import { customAlphabet } from 'nanoid';
+import {
+  AzureConnectionString,
+  AzureContainerName,
+  ExampleImage,
+  IsProd,
+} from '~/utils/constants';
 
-const connectionString = process.env.AZURE_CONNECTION_STRING || '';
-const containerName = process.env.AZURE_CONTAINER_NAME || '';
-
-const blobServiceClient =
-  BlobServiceClient.fromConnectionString(connectionString);
-const containerClient = blobServiceClient.getContainerClient(containerName);
+const blobServiceClient = BlobServiceClient.fromConnectionString(
+  AzureConnectionString,
+);
+const containerClient =
+  blobServiceClient.getContainerClient(AzureContainerName);
 
 export const uploadImage = async (imageUrl: string): Promise<string | null> => {
+  if (IsProd) return ExampleImage;
+
   try {
     const id = customAlphabet(
       '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
