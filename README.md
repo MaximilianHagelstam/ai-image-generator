@@ -12,7 +12,7 @@
 
 ### Getting started
 
-1. Setup Azure Blob Storage and Replicate:
+1. Get a Replicate API key:
 
 2. Install dependencies:
 
@@ -35,6 +35,5 @@ npm run dev
 ### Built with
 
 - [Nuxt](https://nuxt.com/)
-- [Azure](https://azure.microsoft.com/en-us/products/storage/blobs)
 - [Replicate](https://replicate.com/)
 - [Tailwind CSS](https://tailwindcss.com/)

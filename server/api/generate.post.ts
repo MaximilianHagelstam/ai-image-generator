@@ -1,7 +1,6 @@
 import { defineEventHandler } from 'h3';
 import { MaxPromptLength, MinPromptLength } from '~/utils/constants';
 import { generateImage } from '~/utils/generate';
-import { uploadImage } from '~/utils/upload';
 
 type RequestBody = { prompt: string };
 
@@ -36,19 +35,11 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const imageUrl = await generateImage(body.prompt);
-  if (!imageUrl) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: 'Error generating image',
-    });
-  }
-
-  const url = await uploadImage(imageUrl);
+  const url = await generateImage(body.prompt);
   if (!url) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'Error uploading image',
+      statusMessage: 'Error generating image',
     });
   }
 
