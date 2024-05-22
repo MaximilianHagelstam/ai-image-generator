@@ -16,7 +16,6 @@
     "clean": "rm -rf .nuxt .output node_modules coverage"
   },
   "dependencies": {
-    "@azure/storage-blob": "^12.17.0",
     "@nuxt/image": "^1.6.0",
     "axios": "^1.6.8",
     "nanoid": "^5.0.7",
